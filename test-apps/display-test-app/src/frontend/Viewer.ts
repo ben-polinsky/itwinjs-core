@@ -35,6 +35,7 @@ import { GoogleMapsPanel } from "./GoogleMaps";
 import { DtaConfiguration } from "../common/DtaConfiguration";
 import { DtaRpcInterface } from "../common/DtaRpcInterface";
 import { LocalFormatsProvider } from "./LocalFormatsProvider";
+import { ProjectExtentsEditingExample } from "./ProjectExtentsEditingExample";
 
 
 // cspell:ignore savedata topdiv savedview viewtop
@@ -425,6 +426,13 @@ export class Viewer extends Window {
         return panel;
       },
       tooltip: "Contour display",
+    });
+
+    this.toolBar.addDropDown({
+      iconUnicode: "\ue94f",
+      createDropDown: async (container: HTMLElement) => new ProjectExtentsEditingExample(container, this.viewport),
+      tooltip: "Project extents editing example",
+      only3d: true,
     });
 
     this.toolBar.addItem(createToolButton({
